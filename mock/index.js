@@ -4,9 +4,11 @@ const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
+server.use(jsonServer.bodyParser);
 
 server.post("/login", (req, res, next) => {
-  if (validateEmail(req.query.email) && req.query.password.length > 3) {
+  console.log("req.query", req.body);
+  if (validateEmail(req.body.email) && req.body.password.length > 3) {
     return res.sendStatus(200);
   } else {
     console.log("in invalid email");
@@ -17,7 +19,7 @@ server.post("/login", (req, res, next) => {
 });
 
 server.post("/signup", (req, res, next) => {
-  if (validateEmail(req.query.email) && req.query.password.length > 3) {
+  if (validateEmail(req.body.email) && req.body.password.length > 3) {
     return res.sendStatus(200);
   } else {
     console.log("in invalid email");
@@ -33,7 +35,7 @@ server.listen(9000, () => {
 });
 
 function validateEmail(mail) {
-  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+  if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
     return true;
   }
   console.log("You have entered an invalid email address!");

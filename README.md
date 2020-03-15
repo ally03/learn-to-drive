@@ -29,6 +29,35 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `yarn eject`
 
+### 'yarn mock:api'
+
+ideal way of starting app will be
+
+1. `yarn start`
+2. open another terminal and run `yarn run mock:api`
+
+you can mock api for the followings:
+
+POST : http://localhost:9000/login
+POST : http://localhost:9000/signup
+
+E.g
+
+  const response = await fetch("http://localhost:9000/login", {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json"
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer", // no-referrer, *client
+    body: JSON.stringify({ email: "hafiz@gmail.com", password: "1232131" }) // body data type must match "Content-Type" header
+  });
+  return await response.json(); // parses JSON response into native JavaScript objects
+
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
