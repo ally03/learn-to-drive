@@ -1,29 +1,34 @@
 import React from "react";
-import { Form, Button, Row, Col, Container, Modal } from "react-bootstrap";
+import { Form, Button, Card, Modal } from "react-bootstrap";
 import "./login.css";
 
 class LoginForm extends React.Component {
   render() {
     return (
-      <div>
-        <Container>
-          <Modal.Dialog>
-            <Modal.Title className="text-center">The To Do </Modal.Title>
-            <Form className="displayText">
+      <div className="displayForm">
+        <Card style={{ width: "29rem", height: "25rem" }} className="border">
+          <Card.Body>
+            <Card.Title className="formTitle">The To Do </Card.Title>
+            <Form className="inputForm">
               <Form.Group controlId="formGroupEmail">
                 <Form.Control type="email" placeholder="Enter email" />
               </Form.Group>
               <Form.Group controlId="formGroupPassword">
                 {/* <Form.Label>Password</Form.Label> */}
                 <Form.Control type="password" placeholder="Password" />
+                <Form.Text className="text-muted">Forget Password?</Form.Text>
               </Form.Group>
-              <Form.Text className="text-muted">Forget Password?</Form.Text>
-              <Button variant="primary">Primary</Button>{" "}
-              <Button variant="success">Success</Button>{" "}
-              {/* <Form.Label>Forget Password</Form.Label> */}
+              <Modal.Footer>
+                <Button variant="primary" type="submit">
+                  Login
+                </Button>
+                <Button className="signup" variant="success">
+                  Signup
+                </Button>
+              </Modal.Footer>
             </Form>
-          </Modal.Dialog>
-        </Container>
+          </Card.Body>
+        </Card>
       </div>
     );
   }
