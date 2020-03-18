@@ -56,7 +56,7 @@ class LoginForm extends React.Component<Props, LoginFormState> {
     // console.log("responmse", test_api_call());
     return (
       <div className="displayForm">
-        <Card style={{ width: "29rem", height: "25rem" }} className="border">
+        <Card style={{ width: "29rem" }} className="border">
           <Card.Body>
             <Card.Title className="formTitle">The To Do </Card.Title>
             <Form className="inputForm" onSubmit={this.handleSubmit}>

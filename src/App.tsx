@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import LoginForm from "./loginComponet/LoginForm";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import SignUp from "./loginComponet/signUp";
 
