@@ -1,13 +1,18 @@
 import React from "react";
 import { Form, Button, Card, Modal } from "react-bootstrap";
 import "./login.css";
-import { Link } from "react-router-dom";
+import {
+  Link,
+  Redirect,
+  withRouter,
+  RouteComponentProps
+} from "react-router-dom";
 
 interface LoginFormState {
   //can be
-  //email: string
-  //password: string
-  [key: string]: string;
+  email: string;
+  password: string;
+  loggedIn: boolean;
 }
 interface Props {}
 
@@ -16,28 +21,37 @@ class LoginForm extends React.Component<Props, LoginFormState> {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      loggedIn: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(e: any) {
-    console.log("this is event", e.target.name);
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    const state = this.state;
+    this.setState({ ...state, [e.target.name]: e.target.value });
+    console.log("state", this.state);
+    // console.log("this is event", e.target.name);
+    // this.state.userinfo[e.target.name] = e.target.value;
+    // console.log("state", this.state);
+
+    // this.setState({
+    //   userinfo[e.target.name]= e.target.value,
+    // });
   }
   handleSubmit(e: any) {
     e.preventDefault();
     console.log("event", e);
-    this.setState({
-      email: this.state.email,
-      password: this.state.password
-    });
-    console.log("email", this.state);
+    // this.setState({
+    //   email: this.state.email,
+    //   password: this.state.password
+    // });
+
+    console.log("handle submit state", this.state);
     this.test_api_call();
   }
   test_api_call = async () => {
+    console.log("state info", this);
     const response = await fetch("http://localhost:9000/login", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -48,15 +62,23 @@ class LoginForm extends React.Component<Props, LoginFormState> {
         password: this.state.password
       })
     });
-    console.log("resp", response);
-    return await response;
+    console.log("response", response.status);
+    if (response.status === 200) {
+      this.setState({ loggedIn: true });
+    }
+    // return await response;
   };
 
   render() {
-    // console.log("responmse", test_api_call());
+    if (this.state.loggedIn) {
+      return <Redirect push to="/" />;
+    }
     return (
+      // {console.log(this.state)}
+      // {this.state.loggedIn ? (<Redirect push to="/sample" />):null}
+      // {props.status}
       <div className="displayForm">
-        <Card style={{ width: "29rem" }} className="border">
+        <Card className="border">
           <Card.Body>
             <Card.Title className="formTitle">The To Do </Card.Title>
             <Form className="inputForm" onSubmit={this.handleSubmit}>
@@ -80,11 +102,9 @@ class LoginForm extends React.Component<Props, LoginFormState> {
                 <Form.Text className="text-muted">Forget Password?</Form.Text>
               </Form.Group>
               <Modal.Footer>
-                <Link to="/">
-                  <Button variant="primary" type="submit">
-                    Login
-                  </Button>
-                </Link>
+                <Button variant="primary" type="submit">
+                  Login
+                </Button>
                 <Link to="/signup">
                   <Button className="signup" variant="success">
                     Signup

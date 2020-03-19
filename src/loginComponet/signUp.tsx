@@ -7,7 +7,7 @@ class SignUp extends React.Component {
   render() {
     return (
       <div className="displayForm">
-        <Card style={{ width: "29rem" }} className="border">
+        <Card className="border">
           <Card.Body>
             <Card.Title className="formTitle">Register</Card.Title>
             <Form className="inputForm">
