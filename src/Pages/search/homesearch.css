@@ -1,7 +1,16 @@
-.displayForm {
-  min-height: 100vh;
+.searchbox {
   display: flex;
-  /* flex-direction: column;
+  max-width: 75%;
   align-items: center;
-  justify-content: center; */
+  left: 86px;
+}
+.searchTitle {
+  color: #266abd;
+  text-align: center;
+}
+.searchForm {
+  box-shadow: 0px 1px 18px 0px #666;
+}
+.searchText {
+  text-align: center;
 }

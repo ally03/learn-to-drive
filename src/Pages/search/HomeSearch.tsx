@@ -1,25 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Form, Button, Card } from "react-bootstrap";
-// import "./homesearch.css";
+import { Form, Button, Card, Row, Col } from "react-bootstrap";
+import "./homesearch.css";
 
 class HomeSearch extends React.Component {
   render() {
     return (
       <div className="displayForm">
-        <Card className="border">
+        <Card className="searchForm">
           <Card.Body>
-            <Form className="inputForm">
-              <Form.Group controlId="formGroupEmail">
-                <Form.Control
-                  type="search"
-                  name="email"
-                  placeholder="Postcode"
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Search
-              </Button>
+            <Form>
+              <h1 className="searchTitle">
+                Book your first driving lesson today
+              </h1>
+              <p className="searchText">
+                Find most humble and experienced instructors near you.
+              </p>
+
+              <Row>
+                <Col className="searchbox">
+                  <Form.Control
+                    size="lg"
+                    type="search"
+                    placeholder="Postcode"
+                  />
+                  <Button size="lg" variant="primary" type="submit">
+                    Search
+                  </Button>
+                </Col>
+              </Row>
             </Form>
           </Card.Body>
         </Card>
