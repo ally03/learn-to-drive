@@ -14,3 +14,7 @@
 .searchText {
   text-align: center;
 }
+.searchAlert {
+  color: red;
+  text-align: center;
+}
