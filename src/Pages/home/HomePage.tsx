@@ -2,9 +2,9 @@ import React from "react";
 import { Card, CardDeck, Row, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./homepage.css";
-import rangerover from "../image/rangerover.jpg";
-import blueBmw from "../image/blueBmw.jpg";
-import roberthaverly from "../image/roberthaverly.jpg";
+import rangerover from "../../images/rangerover.jpg";
+import blueBmw from "../../images/rangerover.jpg";
+import roberthaverly from "../../images/rangerover.jpg";
 
 class HomePage extends React.Component {
   render() {

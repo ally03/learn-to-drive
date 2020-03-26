@@ -18,28 +18,28 @@ class SignUp extends React.Component {
                   placeholder="Enter email"
                 />
               </Form.Group>
-              <Form.Group controlId="formGroupPassword">
+              <Form.Group controlId="formGroupPassword1">
                 <Form.Control
                   name="password"
                   type="password"
                   placeholder="Password"
                 />
               </Form.Group>
-              <Form.Group controlId="formGroupPassword">
+              <Form.Group controlId="formGroupPassword2">
                 <Form.Control
                   name="password"
                   type="password"
                   placeholder="Password"
                 />
               </Form.Group>
-              <Form.Group controlId="formGroupPassword">
+              <Form.Group controlId="formGroupPassword3">
                 <Form.Control
                   name="FirstName"
                   type="Text"
                   placeholder="First Name"
                 />
               </Form.Group>
-              <Form.Group controlId="formGroupPassword">
+              <Form.Group controlId="formGroupPassword4">
                 <Form.Control
                   name="LastName"
                   type="Text"

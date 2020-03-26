@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
-import { Form, Button, Card, Row, Col, Alert } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
+import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import "./homesearch.css";
 
 interface HomeSearchState {
@@ -36,7 +36,6 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
     this.postcodeAPI();
   }
   postcodeAPI = async () => {
-    console.log("state info", this);
     const response = await fetch("http://localhost:9000/driver/search", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -46,14 +45,12 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
         postCode: this.state.postCode
       })
     });
-    console.log("response", response.status);
     if (response.status === 200) {
       this.setState({ validSearch: true });
     } else if (response.status === 400) {
       this.setState({
         alert: "Please enter a valid post code"
       });
-      console.log("alret", this.state);
     }
     // return await response;
   };
