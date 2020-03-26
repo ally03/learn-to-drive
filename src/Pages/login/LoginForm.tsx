@@ -1,12 +1,7 @@
 import React from "react";
 import { Form, Button, Card, Modal } from "react-bootstrap";
 import "./login.css";
-import {
-  Link,
-  Redirect,
-  withRouter,
-  RouteComponentProps
-} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 interface LoginFormState {
   //can be
@@ -71,7 +66,7 @@ class LoginForm extends React.Component<Props, LoginFormState> {
 
   render() {
     if (this.state.loggedIn) {
-      return <Redirect push to="/" />;
+      return <Redirect push to="/search" />;
     }
     return (
       // {console.log(this.state)}
