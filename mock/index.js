@@ -29,18 +29,6 @@ server.post("/signup", (req, res, next) => {
   }
 });
 
-server.post("/driver/search", (req, res, next) => {
-  console.log("req.query", req.body);
-  if (req.body.postCode.length == 6) {
-    return res.sendStatus(200);
-  } else {
-    console.log("in invalid postcode");
-    return res.status(400).jsonp({
-      error: "Invalid postcode or area code"
-    });
-  }
-});
-
 server.use(router);
 server.listen(9000, () => {
   console.log("JSON Server is running");

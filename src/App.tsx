@@ -1,11 +1,9 @@
 import React from "react";
 import "./App.css";
-import "./common/index.css";
-import LoginForm from "./Pages/login/LoginForm";
+import LoginForm from "./loginComponet/LoginForm";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomePage from "./Pages/HomePage";
-import SignUp from "./Pages/signup/signUp";
-import HomeSearch from "./Pages/search/HomeSearch";
+import HomePage from "./HomePage";
+import SignUp from "./loginComponet/signUp";
 
 class App extends React.Component {
   render() {
@@ -20,9 +18,6 @@ class App extends React.Component {
           </Route>
           <Route path="/signup">
             <SignUp />
-          </Route>
-          <Route path="/search">
-            <HomeSearch />
           </Route>
         </Switch>
       </Router>
