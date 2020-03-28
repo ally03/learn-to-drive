@@ -18,7 +18,7 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "mock:api": "node mock/index.js",
+    "mock:api": "nodemon mock/index.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@types/react": "^16.9.23",
-    "@types/react-dom": "^16.9.5"
+    "@types/react-dom": "^16.9.5",
+    "nodemon": "^2.0.2"
   }
 }
