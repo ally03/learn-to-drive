@@ -4,20 +4,31 @@
 }
 
 .cardHeight {
-  min-height: 200px;
+  /* min-height: 100px; */
   text-align: center;
+  max-width: 25rem;
+  min-width: 12rem;
+}
+
+.colMargin {
+  margin-bottom: 10px;
+}
+
+.carImg {
+  /* max-width: 300px; */
 }
 
 .avatar {
-  position: relative;
   object-fit: cover;
   border-radius: 50%;
+  position: relative;
+  bottom: 50px;
   width: 100px;
-  bottom: 58px;
   height: 100px;
   align-self: center;
 }
 .cardText {
+  height: 130px;
+  bottom: 50px;
   position: relative;
-  bottom: 71px;
 }

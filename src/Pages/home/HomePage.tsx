@@ -1,72 +1,89 @@
 import React from "react";
-import { Card, CardDeck, Row, Col, Image } from "react-bootstrap";
+import { Card, CardDeck, Row, Col, Image, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./homepage.css";
 import rangerover from "../../images/rangerover.jpg";
 import blueBmw from "../../images/rangerover.jpg";
 import roberthaverly from "../../images/rangerover.jpg";
+import SearchComponent from "./searchComponent";
 
 class HomePage extends React.Component {
   render() {
     return (
       <div>
+        <SearchComponent />
         <CardDeck className="cardContainer">
           <Row>
-            <Col lg>
+            <Col sm className="colMargin">
               <Card className="cardHeight">
-                <Card.Img variant="top" src={blueBmw} />
+                <Card.Img
+                  variant="top"
+                  src={roberthaverly}
+                  className="carImg"
+                />
                 <Image src={blueBmw} alt="Avatar" className="avatar"></Image>
                 <Card.Body className="cardText">
                   <Card.Title>David beckam</Card.Title>
-                  <p>5 year of experience</p>
-                  <p>Hyundai Creata</p>
-                  <Card.Text>
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </Card.Text>
+                  <Card.Text>5 year of experience</Card.Text>
+                  <Card.Text>Hyundai Creata</Card.Text>
+
+                  <Card.Text>25 / Hour</Card.Text>
                 </Card.Body>
-                <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
+                <Button variant="outline-primary">Book</Button>
               </Card>
             </Col>
-            <Col lg>
+            <Col sm className="colMargin">
               <Card className="cardHeight">
-                <Card.Img variant="top" src={rangerover} />
+                <Card.Img
+                  variant="top"
+                  src={roberthaverly}
+                  className="carImg"
+                />
                 <Image src={blueBmw} alt="Avatar" className="avatar"></Image>
                 <Card.Body className="cardText">
                   <Card.Title>David beckam</Card.Title>
-                  <p>5 year of experience</p>
-                  <p>Hyundai Creata</p>
-                  <Card.Text>
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </Card.Text>
+                  <Card.Text>5 year of experience</Card.Text>
+                  <Card.Text>Hyundai Creata</Card.Text>
+
+                  <Card.Text>25 / Hour</Card.Text>
                 </Card.Body>
-                <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
+                <Button variant="outline-primary">Book</Button>
               </Card>
             </Col>
-            <Col lg>
+            <Col sm className="colMargin">
               <Card className="cardHeight">
-                <Card.Img variant="top" src={roberthaverly} />
+                <Card.Img
+                  variant="top"
+                  src={roberthaverly}
+                  className="carImg"
+                />
                 <Image src={blueBmw} alt="Avatar" className="avatar"></Image>
                 <Card.Body className="cardText">
                   <Card.Title>David beckam</Card.Title>
-                  <p>5 year of experience</p>
-                  <p>Hyundai Creata</p>
-                  <Card.Text>
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </Card.Text>
+                  <Card.Text>5 year of experience</Card.Text>
+                  <Card.Text>Hyundai Creata</Card.Text>
+
+                  <Card.Text>25 / Hour</Card.Text>
                 </Card.Body>
-                <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
+                <Button variant="outline-primary">Book</Button>
+              </Card>
+            </Col>
+            <Col sm className="colMargin">
+              <Card className="cardHeight">
+                <Card.Img
+                  variant="top"
+                  src={roberthaverly}
+                  className="carImg"
+                />
+                <Image src={blueBmw} alt="Avatar" className="avatar"></Image>
+                <Card.Body className="cardText">
+                  <Card.Title>David beckam</Card.Title>
+                  <Card.Text>5 year of experience</Card.Text>
+                  <Card.Text>Hyundai Creata</Card.Text>
+
+                  <Card.Text>25 / Hour</Card.Text>
+                </Card.Body>
+                <Button variant="outline-primary">Book</Button>
               </Card>
             </Col>
           </Row>
