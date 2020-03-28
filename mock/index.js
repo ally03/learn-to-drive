@@ -1,8 +1,8 @@
+const driverInfo = require("./driverInfo.json");
 const jsonServer = require("json-server");
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
-
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
@@ -38,6 +38,18 @@ server.post("/driver/search", (req, res, next) => {
     return res.status(400).jsonp({
       error: "Invalid postcode or area code"
     });
+  }
+});
+
+server.post("/learner/drivers", (req, res) => {
+  console.log("res body", req.body);
+  if (req.body.postCode.length < 6) {
+    return res.status(400).jsonp({
+      error: "Bad Request",
+      message: "Sorry, Cannot find drivers for this location"
+    });
+  } else {
+    return res.send(driverInfo);
   }
 });
 
