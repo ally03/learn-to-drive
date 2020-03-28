@@ -57,7 +57,7 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
 
   render() {
     if (this.state.validSearch) {
-      return <Redirect push to="/" />;
+      return <Redirect push to="/home" />;
     }
     return (
       <div className="displayForm">

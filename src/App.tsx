@@ -6,13 +6,15 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./Pages/home/HomePage";
 import SignUp from "./Pages/signup/signUp";
 import HomeSearch from "./Pages/search/HomeSearch";
-
+import NavComponent from "./components/NavComponent";
+// import { useLocation } from "react-router-dom";
 class App extends React.Component {
   render() {
     return (
       <Router>
+        <NavComponent />
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/home">
             <HomePage />
           </Route>
           <Route path="/login">

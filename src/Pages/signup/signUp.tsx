@@ -54,7 +54,7 @@ class SignUp extends React.Component {
                 />
               </Form.Group>
               <Modal.Footer>
-                <Link to="/">
+                <Link to="/home">
                   <Button variant="success" type="submit">
                     Sign Up
                   </Button>
