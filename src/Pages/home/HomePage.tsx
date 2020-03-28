@@ -2,16 +2,13 @@ import React from "react";
 import { Card, CardDeck, Row, Col, Image, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./homepage.css";
-import rangerover from "../../images/rangerover.jpg";
 import blueBmw from "../../images/rangerover.jpg";
 import roberthaverly from "../../images/rangerover.jpg";
-import SearchComponent from "./searchComponent";
 
 class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <SearchComponent />
         <CardDeck className="cardContainer">
           <Row>
             <Col sm className="colMargin">

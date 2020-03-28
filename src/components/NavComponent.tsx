@@ -7,9 +7,9 @@ import {
   FormControl,
   NavDropdown
 } from "react-bootstrap";
-import "./searchcomponent.css";
+import "./navComponent.css";
 
-class SearchComponent extends React.Component {
+class NavComponent extends React.Component {
   render() {
     return (
       <div>
@@ -42,4 +42,4 @@ class SearchComponent extends React.Component {
   }
 }
 
-export default SearchComponent;
+export default NavComponent;

@@ -14,10 +14,6 @@
   margin-bottom: 10px;
 }
 
-.carImg {
-  /* max-width: 300px; */
-}
-
 .avatar {
   object-fit: cover;
   border-radius: 50%;
