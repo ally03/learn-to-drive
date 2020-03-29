@@ -1,0 +1,30 @@
+.cardContainer {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.cardHeight {
+  /* min-height: 100px; */
+  text-align: center;
+  max-width: 25rem;
+  min-width: 12rem;
+}
+
+.colMargin {
+  margin-bottom: 10px;
+}
+
+.avatar {
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  bottom: 50px;
+  width: 100px;
+  height: 100px;
+  align-self: center;
+}
+.cardText {
+  height: 130px;
+  bottom: 50px;
+  position: relative;
+}

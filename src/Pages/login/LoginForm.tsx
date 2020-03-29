@@ -25,28 +25,12 @@ class LoginForm extends React.Component<Props, LoginFormState> {
   handleChange(e: any) {
     const state = this.state;
     this.setState({ ...state, [e.target.name]: e.target.value });
-    console.log("state", this.state);
-    // console.log("this is event", e.target.name);
-    // this.state.userinfo[e.target.name] = e.target.value;
-    // console.log("state", this.state);
-
-    // this.setState({
-    //   userinfo[e.target.name]= e.target.value,
-    // });
   }
   handleSubmit(e: any) {
     e.preventDefault();
-    console.log("event", e);
-    // this.setState({
-    //   email: this.state.email,
-    //   password: this.state.password
-    // });
-
-    console.log("handle submit state", this.state);
     this.test_api_call();
   }
   test_api_call = async () => {
-    console.log("state info", this);
     const response = await fetch("http://localhost:9000/login", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -57,7 +41,6 @@ class LoginForm extends React.Component<Props, LoginFormState> {
         password: this.state.password
       })
     });
-    console.log("response", response.status);
     if (response.status === 200) {
       this.setState({ loggedIn: true });
     }
@@ -69,9 +52,6 @@ class LoginForm extends React.Component<Props, LoginFormState> {
       return <Redirect push to="/search" />;
     }
     return (
-      // {console.log(this.state)}
-      // {this.state.loggedIn ? (<Redirect push to="/sample" />):null}
-      // {props.status}
       <div className="displayForm">
         <Card className="border">
           <Card.Body>
