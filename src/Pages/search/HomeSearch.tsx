@@ -12,7 +12,7 @@ interface HomeSearchState {
 interface Props {}
 
 class HomeSearch extends React.Component<Props, HomeSearchState> {
-  constructor(props: any) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       postCode: "",
@@ -33,9 +33,9 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
     this.setState({
       postCode: this.state.postCode
     });
-    this.postcodeAPI();
+    this.postcodeApi();
   }
-  postcodeAPI = async () => {
+  postcodeApi = async () => {
     const response = await fetch("http://localhost:9000/driver/search", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {

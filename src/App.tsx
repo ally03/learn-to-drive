@@ -7,7 +7,6 @@ import HomePage from "./Pages/home/HomePage";
 import SignUp from "./Pages/signup/signUp";
 import HomeSearch from "./Pages/search/HomeSearch";
 import NavComponent from "./components/NavComponent";
-// import { useLocation } from "react-router-dom";
 
 class App extends React.Component {
   render() {

@@ -2,8 +2,8 @@ import React from "react";
 import { Card, CardDeck, Row, Col, Image, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./homepage.css";
-import blueBmw from "../../images/rangerover.jpg";
-import roberthaverly from "../../images/rangerover.jpg";
+import blueBmw from "../../asset/images/rangerover.jpg";
+import roberthaverly from "../../asset/images/roberthaverly.jpg";
 
 class HomePage extends React.Component {
   render() {
