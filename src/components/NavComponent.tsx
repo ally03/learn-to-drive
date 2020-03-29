@@ -10,7 +10,6 @@ import {
 import "./navComponent.css";
 
 const NavComponent = () => {
-  if (window.location.pathname !== "/home") return null;
   return (
     <div>
       <Navbar bg="primary" variant="dark" expand="lg">
