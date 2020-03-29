@@ -9,7 +9,9 @@ server.use(jsonServer.bodyParser);
 server.post("/login", (req, res, next) => {
   console.log("req.query", req.body);
   if (validateEmail(req.body.email) && req.body.password.length > 3) {
-    return res.sendStatus(200);
+    setTimeout(function() {
+      return res.sendStatus(200);
+    }, 3000);
   } else {
     console.log("in invalid email");
     return res.status(400).jsonp({
@@ -20,7 +22,9 @@ server.post("/login", (req, res, next) => {
 
 server.post("/signup", (req, res, next) => {
   if (validateEmail(req.body.email) && req.body.password.length > 3) {
-    return res.sendStatus(200);
+    setTimeout(function() {
+      return res.sendStatus(200);
+    }, 3000);
   } else {
     console.log("in invalid email");
     return res.status(400).jsonp({
@@ -31,8 +35,10 @@ server.post("/signup", (req, res, next) => {
 
 server.post("/driver/search", (req, res, next) => {
   console.log("req.query", req.body);
-  if (req.body.postCode.length == 6) {
-    return res.sendStatus(200);
+  if (req.body.postCode.length === 6) {
+    setTimeout(function() {
+      return res.sendStatus(200);
+    }, 3000);
   } else {
     console.log("in invalid postcode");
     return res.status(400).jsonp({
@@ -49,7 +55,16 @@ server.post("/learner/drivers", (req, res) => {
       message: "Sorry, Cannot find drivers for this location"
     });
   } else {
-    return res.send(driverInfo);
+    let number = Math.floor(Math.random() * 86 + 1);
+    const drivers = driverInfo.data.slice(number, number + 12);
+    console.log(
+      "drivers",
+      drivers.map(r => r.firstName)
+    );
+
+    setTimeout(function() {
+      return res.send(drivers);
+    }, 3000);
   }
 });
 
