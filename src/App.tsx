@@ -15,7 +15,7 @@ class App extends React.Component {
       <Router>
         <NavComponent />
         <Switch>
-          <Route exact path="/home">
+          <Route exact path={["/home", "/"]}>
             <HomePage />
           </Route>
           <Route path="/login">
