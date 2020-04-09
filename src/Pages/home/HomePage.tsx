@@ -5,7 +5,45 @@ import "./homepage.css";
 import blueBmw from "../../asset/images/rangerover.jpg";
 import roberthaverly from "../../asset/images/roberthaverly.jpg";
 
+interface HomePageState {
+  data: any;
+}
+
+interface Props {}
+
 class HomePage extends React.Component {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      data: null
+    };
+  }
+
+  // componentDidMount() {
+  //   fetch("http://localhost:9000/learner/home")
+  //     .then(response => {
+  //       console.log(response);
+  //       return response.json();
+  //     })
+  //     .then(data => {
+  //       console.log(data, "arrya");
+  //     });
+  // }
+
+  // componentDidMount() {
+  //   fetch("http://localhost:9000/learner/home")
+  // .then(response => {
+  //   console.log(response);
+  //   return response.json();
+  // })
+  // .then(data =>
+  //   this.setState(() => {
+  //     console.log(data);
+  //     return { data };
+  //   })
+  // );
+  // }
+
   render() {
     return (
       <div>

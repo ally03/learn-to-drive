@@ -7,6 +7,7 @@ import HomePage from "./Pages/home/HomePage";
 import SignUp from "./Pages/signup/signUp";
 import HomeSearch from "./Pages/search/HomeSearch";
 import NavComponent from "./components/NavComponent";
+import ForgotPassword from "./Pages/login/ForgotPassword";
 
 class App extends React.Component {
   render() {
@@ -22,6 +23,9 @@ class App extends React.Component {
           </Route>
           <Route path="/signup">
             <SignUp />
+          </Route>
+          <Route path="/forgotpassword">
+            <ForgotPassword />
           </Route>
           <Route path="/search">
             <HomeSearch />

@@ -74,7 +74,9 @@ class LoginForm extends React.Component<Props, LoginFormState> {
                   value={this.state.password}
                   onChange={this.handleChange}
                 />
-                <Form.Text className="text-muted">Forget Password?</Form.Text>
+                <Link to="/forgotpassword">
+                  <Form.Text className="text-muted">Forget Password?</Form.Text>
+                </Link>
               </Form.Group>
               <Modal.Footer>
                 <Button variant="primary" type="submit">

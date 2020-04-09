@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import "./homesearch.css";
 
@@ -7,6 +7,7 @@ interface HomeSearchState {
   postCode: string;
   validSearch: boolean;
   alert: string;
+  cardData: any;
 }
 
 interface Props {}
@@ -17,7 +18,8 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
     this.state = {
       postCode: "",
       validSearch: false,
-      alert: ""
+      alert: "",
+      cardData: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -36,7 +38,7 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
     this.postcodeApi();
   }
   postcodeApi = async () => {
-    const response = await fetch("http://localhost:9000/driver/search", {
+    await fetch("http://localhost:9000/learner/home", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json"
@@ -44,21 +46,18 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
       body: JSON.stringify({
         postCode: this.state.postCode
       })
-    });
-    if (response.status === 200) {
-      this.setState({ validSearch: true });
-    } else if (response.status === 400) {
-      this.setState({
-        alert: "Please enter a valid post code"
-      });
-    }
-    // return await response;
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => this.setState({ cardData: data }));
   };
 
   render() {
-    if (this.state.validSearch) {
-      return <Redirect push to="/home" />;
-    }
+    // if (this.state.validSearch) {
+    //   return <Redirect push to="/home" />;
+    // }
+    console.log("data", this.state);
     return (
       <div className="displayForm">
         <Card className="searchForm">
@@ -79,14 +78,16 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
                     value={this.state.postCode}
                     onChange={this.handleChange}
                   />
-                  <Button
-                    size="lg"
-                    variant="primary"
-                    type="submit"
-                    onClick={this.handleSearch}
-                  >
-                    Search
-                  </Button>
+                  <Link to={{ pathname: "/home" + "?postcode=le45je" }}>
+                    <Button
+                      size="lg"
+                      variant="primary"
+                      type="submit"
+                      onClick={this.handleSearch}
+                    >
+                      Search
+                    </Button>
+                  </Link>
                 </Col>
               </Row>
               <p className="searchAlert">{this.state.alert}</p>
