@@ -2,130 +2,80 @@ import React from "react";
 import { Card, CardDeck, Row, Col, Image, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./homepage.css";
-import blueBmw from "../../asset/images/rangerover.jpg";
-import roberthaverly from "../../asset/images/roberthaverly.jpg";
 
 interface HomePageState {
-  data: any;
+  postCode: string;
+  cardData: any;
 }
 
 interface Props {}
 
-class HomePage extends React.Component {
+class HomePage extends React.Component<Props, HomePageState> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      data: null
+      postCode: "",
+      cardData: []
     };
   }
 
-  // componentDidMount() {
-  //   fetch("http://localhost:9000/learner/home")
-  //     .then(response => {
-  //       console.log(response);
-  //       return response.json();
-  //     })
-  //     .then(data => {
-  //       console.log(data, "arrya");
-  //     });
-  // }
-
-  // componentDidMount() {
-  //   fetch("http://localhost:9000/learner/home")
-  // .then(response => {
-  //   console.log(response);
-  //   return response.json();
-  // })
-  // .then(data =>
-  //   this.setState(() => {
-  //     console.log(data);
-  //     return { data };
-  //   })
-  // );
-  // }
-
+  componentDidMount = async () => {
+    let UrlString = window.location.search;
+    let postCodeUrl = UrlString.replace(/[&\\#,+()$~%.'":*?<>{}]/g, "");
+    console.log("postcode", postCodeUrl);
+    await fetch("http://localhost:9000/learner/home", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        postCode: postCodeUrl
+      })
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => this.setState({ cardData: data }));
+  };
   render() {
-    return (
-      <div>
-        <CardDeck className="cardContainer">
-          <Row>
-            <Col sm className="colMargin">
-              <Card className="cardHeight">
-                <Card.Img
-                  variant="top"
-                  src={roberthaverly}
-                  className="carImg"
-                />
-                <Image src={blueBmw} alt="Avatar" className="avatar"></Image>
-                <Card.Body className="cardText">
-                  <Card.Title>David beckam</Card.Title>
-                  <Card.Text>5 year of experience</Card.Text>
-                  <Card.Text>Hyundai Creata</Card.Text>
+    console.log("state", this.state.cardData);
+    if (this.state.cardData.length > 0) {
+      return (
+        <div>
+          <CardDeck className="cardContainer">
+            <Row>
+              {this.state.cardData.map((cardData: any) => (
+                <Col sm className="colMargin" key={Math.random()}>
+                  <Card className="cardHeight">
+                    <Card.Img
+                      variant="top"
+                      src={cardData.carPhoto}
+                      className="carImg"
+                    />
+                    <Image
+                      src={cardData.profilePhoto}
+                      alt="Avatar"
+                      className="avatar"
+                    ></Image>
+                    <Card.Body className="cardText">
+                      <Card.Title>{cardData.firstName}</Card.Title>
+                      <Card.Text>{cardData.exp} year of experience</Card.Text>
+                      <Card.Text>{cardData.lpNo}</Card.Text>
 
-                  <Card.Text>25 / Hour</Card.Text>
-                </Card.Body>
-                <Button variant="outline-primary">Book</Button>
-              </Card>
-            </Col>
-            <Col sm className="colMargin">
-              <Card className="cardHeight">
-                <Card.Img
-                  variant="top"
-                  src={roberthaverly}
-                  className="carImg"
-                />
-                <Image src={blueBmw} alt="Avatar" className="avatar"></Image>
-                <Card.Body className="cardText">
-                  <Card.Title>David beckam</Card.Title>
-                  <Card.Text>5 year of experience</Card.Text>
-                  <Card.Text>Hyundai Creata</Card.Text>
-
-                  <Card.Text>25 / Hour</Card.Text>
-                </Card.Body>
-                <Button variant="outline-primary">Book</Button>
-              </Card>
-            </Col>
-            <Col sm className="colMargin">
-              <Card className="cardHeight">
-                <Card.Img
-                  variant="top"
-                  src={roberthaverly}
-                  className="carImg"
-                />
-                <Image src={blueBmw} alt="Avatar" className="avatar"></Image>
-                <Card.Body className="cardText">
-                  <Card.Title>David beckam</Card.Title>
-                  <Card.Text>5 year of experience</Card.Text>
-                  <Card.Text>Hyundai Creata</Card.Text>
-
-                  <Card.Text>25 / Hour</Card.Text>
-                </Card.Body>
-                <Button variant="outline-primary">Book</Button>
-              </Card>
-            </Col>
-            <Col sm className="colMargin">
-              <Card className="cardHeight">
-                <Card.Img
-                  variant="top"
-                  src={roberthaverly}
-                  className="carImg"
-                />
-                <Image src={blueBmw} alt="Avatar" className="avatar"></Image>
-                <Card.Body className="cardText">
-                  <Card.Title>David beckam</Card.Title>
-                  <Card.Text>5 year of experience</Card.Text>
-                  <Card.Text>Hyundai Creata</Card.Text>
-
-                  <Card.Text>25 / Hour</Card.Text>
-                </Card.Body>
-                <Button variant="outline-primary">Book</Button>
-              </Card>
-            </Col>
-          </Row>
-        </CardDeck>
-        <Link to="./login">login</Link>
-      </div>
-    );
+                      <Card.Text>{cardData.charge} / Hour</Card.Text>
+                    </Card.Body>
+                    <Button variant="outline-primary">Book</Button>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </CardDeck>
+          <Link to="./login">login</Link>
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
 
