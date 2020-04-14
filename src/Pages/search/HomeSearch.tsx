@@ -40,23 +40,7 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
         alert: "Please Enter a vaild postcode"
       });
     }
-    // this.postcodeApi();
   }
-  // postcodeApi = async () => {
-  //   await fetch("http://localhost:9000/learner/home", {
-  //     method: "POST", // *GET, POST, PUT, DELETE, etc.
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       postCode: this.state.postCode
-  //     })
-  //   })
-  //     .then(response => {
-  //       return response.json();
-  //     })
-  //     .then(data => this.setState({ cardData: data }));
-  // };
 
   render() {
     if (this.state.validSearch) {
@@ -82,12 +66,11 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
                     value={this.state.postCode}
                     onChange={this.handleChange}
                   />
-
                   <Button
-                    size="lg"
                     variant="primary"
-                    type="submit"
+                    size="lg"
                     onClick={this.handleSearch}
+                    className="buttonColor"
                   >
                     Search
                   </Button>

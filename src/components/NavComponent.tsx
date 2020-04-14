@@ -8,6 +8,7 @@ import {
   NavDropdown
 } from "react-bootstrap";
 import "./navComponent.css";
+import { Link } from "react-router-dom";
 
 const NavComponent = () => {
   return (
@@ -32,7 +33,7 @@ const NavComponent = () => {
             </NavDropdown>
           </Nav>
           <Navbar.Text>
-            Signed in as: <a href="#login">Alid Didarali</a>
+            Signed in as: <Link to="./login">Alid Didarali</Link>
           </Navbar.Text>
         </Navbar.Collapse>
       </Navbar>

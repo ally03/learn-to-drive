@@ -79,7 +79,7 @@ class LoginForm extends React.Component<Props, LoginFormState> {
                 </Link>
               </Form.Group>
               <Modal.Footer>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" className="buttonColor">
                   Login
                 </Button>
                 <Link to="/signup">
