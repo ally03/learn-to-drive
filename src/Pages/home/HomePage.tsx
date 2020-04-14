@@ -31,7 +31,6 @@ class HomePage extends React.Component<Props, HomePageState> {
   componentDidMount = async () => {
     let UrlString = window.location.search;
     let postCodeUrl = UrlString.replace(/[&\\#,+()$~%.'":*?<>{}]/g, "");
-    console.log("postcode", postCodeUrl);
     this.setState({ loading: true });
     await fetch("http://localhost:9000/learner/home", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -48,6 +47,7 @@ class HomePage extends React.Component<Props, HomePageState> {
       .then(data => this.setState({ cardData: data, loading: false }));
   };
   render() {
+    console.log("this is state", this.state);
     if (this.state.loading === true) {
       return (
         <div className="displayForm">

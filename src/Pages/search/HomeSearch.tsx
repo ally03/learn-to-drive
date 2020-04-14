@@ -1,12 +1,13 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { Form, Button, Card, Row, Col } from "react-bootstrap";
+import { Form, Button, Card, Row, Col, Spinner } from "react-bootstrap";
 import "./homesearch.css";
 
 interface HomeSearchState {
   postCode: string;
   validSearch: boolean;
   alert: string;
+  loading: boolean;
 }
 
 interface Props {}
@@ -17,7 +18,8 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
     this.state = {
       postCode: "",
       validSearch: false,
-      alert: ""
+      alert: "",
+      loading: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -30,19 +32,29 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
 
   handleSearch(e: any) {
     e.preventDefault();
+    this.setState({ loading: true });
     if (this.state.postCode.length === 6) {
       this.setState({
         postCode: this.state.postCode,
-        validSearch: true
+        validSearch: true,
+        loading: false
       });
     } else {
       this.setState({
-        alert: "Please Enter a vaild postcode"
+        alert: "Please Enter a vaild postcode",
+        loading: false
       });
     }
   }
 
   render() {
+    if (this.state.loading === true) {
+      return (
+        <div className="displayForm">
+          <Spinner animation="border" variant="danger"></Spinner>
+        </div>
+      );
+    }
     if (this.state.validSearch) {
       return <Redirect push to={`/home?${this.state.postCode}`} />;
     }
