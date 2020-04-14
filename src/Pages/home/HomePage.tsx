@@ -48,7 +48,6 @@ class HomePage extends React.Component<Props, HomePageState> {
       .then(data => this.setState({ cardData: data, loading: false }));
   };
   render() {
-    console.log("state", this.state.cardData);
     if (this.state.loading === true) {
       return (
         <div className="displayForm">
@@ -78,7 +77,6 @@ class HomePage extends React.Component<Props, HomePageState> {
                       <Card.Title>{cardData.firstName}</Card.Title>
                       <Card.Text>{cardData.exp} year of experience</Card.Text>
                       <Card.Text>{cardData.lpNo}</Card.Text>
-
                       <Card.Text>{cardData.charge} / Hour</Card.Text>
                     </Card.Body>
                     <Button variant="outline-primary">Book</Button>
