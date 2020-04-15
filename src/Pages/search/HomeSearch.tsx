@@ -48,7 +48,7 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
   }
 
   render() {
-    if (this.state.loading === true) {
+    if (this.state.loading) {
       return (
         <div className="displayForm">
           <Spinner animation="border" variant="danger"></Spinner>

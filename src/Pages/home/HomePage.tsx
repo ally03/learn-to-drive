@@ -10,9 +10,18 @@ import {
 } from "react-bootstrap";
 import "./homepage.css";
 
+interface CardData {
+  firstName: string;
+  exp: number;
+  rating: number;
+  charge: string;
+  lpNo: string;
+  profilePhoto: string;
+  carPhoto: string;
+}
 interface HomePageState {
   postCode: string;
-  cardData: any;
+  cardData: CardData[];
   loading: boolean;
 }
 
@@ -33,7 +42,7 @@ class HomePage extends React.Component<Props, HomePageState> {
     let postCodeUrl = UrlString.replace(/[&\\#,+()$~%.'":*?<>{}]/g, "");
     this.setState({ loading: true });
     await fetch("http://localhost:9000/learner/home", {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
@@ -47,8 +56,7 @@ class HomePage extends React.Component<Props, HomePageState> {
       .then(data => this.setState({ cardData: data, loading: false }));
   };
   render() {
-    console.log("this is state", this.state);
-    if (this.state.loading === true) {
+    if (this.state.loading) {
       return (
         <div className="displayForm">
           <Spinner animation="border" variant="danger"></Spinner>
@@ -60,7 +68,7 @@ class HomePage extends React.Component<Props, HomePageState> {
         <div>
           <CardDeck className="cardContainer">
             <Row>
-              {this.state.cardData.map((cardData: any) => (
+              {this.state.cardData.map((cardData: CardData) => (
                 <Col sm className="colMargin" key={Math.random()}>
                   <Card>
                     <Card.Img
