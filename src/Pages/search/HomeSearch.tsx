@@ -1,13 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Form, Button, Card, Row, Col } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
+import { Form, Button, Card, Row, Col, Spinner } from "react-bootstrap";
 import "./homesearch.css";
 
 interface HomeSearchState {
   postCode: string;
   validSearch: boolean;
   alert: string;
-  cardData: any;
+  loading: boolean;
 }
 
 interface Props {}
@@ -19,7 +19,7 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
       postCode: "",
       validSearch: false,
       alert: "",
-      cardData: []
+      loading: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -32,32 +32,32 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
 
   handleSearch(e: any) {
     e.preventDefault();
-    this.setState({
-      postCode: this.state.postCode
-    });
-    this.postcodeApi();
+    this.setState({ loading: true });
+    if (this.state.postCode.length === 6) {
+      this.setState({
+        postCode: this.state.postCode,
+        validSearch: true,
+        loading: false
+      });
+    } else {
+      this.setState({
+        alert: "Please Enter a vaild postcode",
+        loading: false
+      });
+    }
   }
-  postcodeApi = async () => {
-    await fetch("http://localhost:9000/learner/home", {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        postCode: this.state.postCode
-      })
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => this.setState({ cardData: data }));
-  };
 
   render() {
-    // if (this.state.validSearch) {
-    //   return <Redirect push to="/home" />;
-    // }
-    console.log("data", this.state);
+    if (this.state.loading) {
+      return (
+        <div className="displayForm">
+          <Spinner animation="border" variant="danger"></Spinner>
+        </div>
+      );
+    }
+    if (this.state.validSearch) {
+      return <Redirect push to={`/home?${this.state.postCode}`} />;
+    }
     return (
       <div className="displayForm">
         <Card className="searchForm">
@@ -78,16 +78,14 @@ class HomeSearch extends React.Component<Props, HomeSearchState> {
                     value={this.state.postCode}
                     onChange={this.handleChange}
                   />
-                  <Link to={{ pathname: "/home" + "?postcode=le45je" }}>
-                    <Button
-                      size="lg"
-                      variant="primary"
-                      type="submit"
-                      onClick={this.handleSearch}
-                    >
-                      Search
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    onClick={this.handleSearch}
+                    className="buttonColor"
+                  >
+                    Search
+                  </Button>
                 </Col>
               </Row>
               <p className="searchAlert">{this.state.alert}</p>

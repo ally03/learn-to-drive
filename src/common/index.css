@@ -19,3 +19,7 @@
   flex-direction: column;
   align-items: center;
 }
+
+.buttonColor {
+  background: #007bff;
+}

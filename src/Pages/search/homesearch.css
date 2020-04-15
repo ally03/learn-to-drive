@@ -1,19 +1,19 @@
-.searchbox {
-  display: flex;
-  max-width: 75%;
-  align-items: center;
-  left: 86px;
-}
-.searchTitle {
-  color: #266abd;
-  text-align: center;
-}
 .searchForm {
   box-shadow: 0px 1px 18px 0px #666;
+}
+
+.searchTitle {
+  color: #007bff;
+  text-align: center;
 }
 .searchText {
   text-align: center;
 }
+.searchbox {
+  display: flex;
+  align-items: center;
+}
+
 .searchAlert {
   color: red;
   text-align: center;

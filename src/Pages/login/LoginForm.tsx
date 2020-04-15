@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button, Card, Modal } from "react-bootstrap";
+import { Form, Button, Card, Modal, Spinner } from "react-bootstrap";
 import "./login.css";
 import { Link, Redirect } from "react-router-dom";
 
@@ -8,6 +8,8 @@ interface LoginFormState {
   email: string;
   password: string;
   loggedIn: boolean;
+  loading: boolean;
+  alert: string;
 }
 interface Props {}
 
@@ -17,7 +19,9 @@ class LoginForm extends React.Component<Props, LoginFormState> {
     this.state = {
       email: "",
       password: "",
-      loggedIn: false
+      loggedIn: false,
+      loading: false,
+      alert: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,6 +35,7 @@ class LoginForm extends React.Component<Props, LoginFormState> {
     this.test_api_call();
   }
   test_api_call = async () => {
+    this.setState({ loading: true });
     const response = await fetch("http://localhost:9000/login", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -42,12 +47,24 @@ class LoginForm extends React.Component<Props, LoginFormState> {
       })
     });
     if (response.status === 200) {
-      this.setState({ loggedIn: true });
+      this.setState({ loggedIn: true, loading: false });
+    } else {
+      this.setState({
+        alert: "Please Enter a Email or Password",
+        loading: false
+      });
     }
     // return await response;
   };
 
   render() {
+    if (this.state.loading === true) {
+      return (
+        <div className="displayForm">
+          <Spinner animation="border" variant="danger"></Spinner>
+        </div>
+      );
+    }
     if (this.state.loggedIn) {
       return <Redirect push to="/search" />;
     }
@@ -79,7 +96,7 @@ class LoginForm extends React.Component<Props, LoginFormState> {
                 </Link>
               </Form.Group>
               <Modal.Footer>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" className="buttonColor">
                   Login
                 </Button>
                 <Link to="/signup">
