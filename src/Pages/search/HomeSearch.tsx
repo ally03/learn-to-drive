@@ -10,10 +10,8 @@ interface HomeSearchState {
   loading: boolean;
 }
 
-interface Props {}
-
-class HomeSearch extends React.Component<Props, HomeSearchState> {
-  constructor(props: Props) {
+class HomeSearch extends React.Component<{}, HomeSearchState> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       postCode: "",

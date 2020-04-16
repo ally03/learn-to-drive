@@ -9,17 +9,24 @@ import {
   Spinner
 } from "react-bootstrap";
 import "./homepage.css";
+import { getAllDriverCard } from "../../services/ApiService";
 
+interface CardData {
+  firstName: string;
+  exp: number;
+  charge: string;
+  lpNo: string;
+  profilePhoto: string;
+  carPhoto: string;
+}
 interface HomePageState {
   postCode: string;
-  cardData: any;
+  cardData: CardData[];
   loading: boolean;
 }
 
-interface Props {}
-
-class HomePage extends React.Component<Props, HomePageState> {
-  constructor(props: Props) {
+class HomePage extends React.Component<{}, HomePageState> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       postCode: "",
@@ -32,23 +39,14 @@ class HomePage extends React.Component<Props, HomePageState> {
     let UrlString = window.location.search;
     let postCodeUrl = UrlString.replace(/[&\\#,+()$~%.'":*?<>{}]/g, "");
     this.setState({ loading: true });
-    await fetch("http://localhost:9000/learner/home", {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        postCode: postCodeUrl
-      })
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => this.setState({ cardData: data, loading: false }));
+    const response = await getAllDriverCard(postCodeUrl);
+    if (response.status === 200) {
+      const responseApi = await response.json();
+      this.setState({ cardData: responseApi, loading: false });
+    }
   };
   render() {
-    console.log("this is state", this.state);
-    if (this.state.loading === true) {
+    if (this.state.loading) {
       return (
         <div className="displayForm">
           <Spinner animation="border" variant="danger"></Spinner>
